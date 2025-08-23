@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+@theme {
+  /* Base Palette */
+  --color-main: #73431c;       
+  --color-Text: #3a2412;         
+  --color-Input-Background: #fdfaf7;
+ 
+
+}
+
+
+
+/* Enhanced form styling */

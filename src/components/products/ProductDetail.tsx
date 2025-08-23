@@ -1,7 +1,7 @@
 "use client";
 import useGetOneProduct from "@/src/Hooks/useGetOneProduct";
 import Image from "next/image";
-import logo from "../../public/logo.png";
+import logo from "../../../public/logo.png";
 import { useOrderContext } from "@/src/contexts/OrderProvider";
 import { useState } from "react";
 import Loading from "../ui/Loading";

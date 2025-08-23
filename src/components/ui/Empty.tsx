@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import EmptyLogo from "../../public/EmptyLogo.svg";
+import EmptyLogo from "../../../public/EmptyLogo.svg";
 
 function Empty() {
   return (

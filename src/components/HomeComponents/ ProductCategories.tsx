@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
-import mirror from "../../public/mirror-category.jpeg"
-import table from "../../public/table-category.jpeg"
+import mirror from "../../../public/mirror-category.jpeg"
+import table from "../../../public/table-category.jpeg"
 
 import Image from 'next/image';
 function  ProductCategories() {

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 import Image from 'next/image';
-import logo from "../../../src/public/logo.png"
+import logo from "../../../public/logo.png"
 import { ArrowRight } from 'lucide-react';
 function HeroSection() {
     return (

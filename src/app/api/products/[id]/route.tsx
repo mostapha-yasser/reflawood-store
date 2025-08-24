@@ -19,7 +19,6 @@ export async function GET(
 
     return Response.json(product);
   } catch (error) {
-    console.error("Error fetching product:", error);
     return Response.json(
       { error: 'Failed to fetch product' },
       { status: 500 }

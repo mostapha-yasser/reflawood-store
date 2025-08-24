@@ -22,7 +22,6 @@ function ProductCard({ product }: { product: Product }) {
     try {
       setIsLoading(true);
 
-      // Create order item from product
       const orderItem: OrderItem = {
         _id: product._id,
         name: product.name,
@@ -33,10 +32,7 @@ function ProductCard({ product }: { product: Product }) {
         quantity: 1
       };
 
-      // Debug log
-      console.log('Adding product to cart:', orderItem);
-
-      // Add to cart
+     
       addNewItem(orderItem);
 
       // Show success state

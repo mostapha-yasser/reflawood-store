@@ -44,7 +44,7 @@ function CheckOutModel({
         PUBLIC_KEY
       );
       
-      console.log('Email sent successfully:', result);
+
       setEmailSent(true);
       
       setTimeout(() => {

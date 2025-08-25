@@ -11,6 +11,7 @@ export interface Product {
   shortDesc: string;
   description: string;
   imageUrl: string;
+  galleryImages: string[]
   createdAt: Date;
   updatedAt: Date;
 }
@@ -21,6 +22,7 @@ export interface ProductDB {
   category: "table" | "mirrors";
   shortDesc: string;
   description: string;
+  galleryImages: string[]
   imageUrl: string;
   createdAt: Date;
   updatedAt: Date;
@@ -33,5 +35,5 @@ export interface ProductInput {
   shortDesc: string;
   description: string;
   imageUrl: string;
-
+galleryImages: string[]
 }

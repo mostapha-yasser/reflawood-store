@@ -9,7 +9,6 @@ export async function GET(request:Request) {
   try {
     const { searchParams } = new URL(request.url);
     const category = searchParams.get("category");
-    const query = searchParams.get("q");
     const filter: Filter<ProductDB> = {};
     if (category=== "mirrors"||category=== "table") {
       filter.category = category 
@@ -18,10 +17,12 @@ export async function GET(request:Request) {
     const productModel = await ProductModel.getInstance();
     await productModel.initIndexes?.();
 
-    const products = 
-      Object.keys(filter).length || query
-        ? await productModel.searchByQueryAndFilter(query, filter)
-        :await productModel.findAll() ;
+let products;
+if (Object.keys(filter).length > 0) {
+  products = await productModel.searchByQueryAndFilter(null, filter);
+} else {
+  products = await productModel.findAll();
+}
     return NextResponse.json(products);
   } catch {
     return NextResponse.json(

@@ -72,6 +72,7 @@ export class ProductModel {
       _id: dbProduct._id.toString(),
       name: dbProduct.name,
       description: dbProduct.description,
+      galleryImages:dbProduct.galleryImages,
       shortDesc: dbProduct.shortDesc,
       prices: dbProduct.prices,
       category: dbProduct.category,

@@ -10,6 +10,7 @@ import UserData from "../models/UserData";
 
 export default function ProductDetail({ productId }: { productId: string }) {
   const [isUserDataModelOpen, SetIsUserDataModelOpen] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(0); // Track selected gallery image
   
   const { data: product, isPending } = useGetOneProduct(productId);
   
@@ -20,7 +21,6 @@ export default function ProductDetail({ productId }: { productId: string }) {
     quantity,
     addOneMore,
     minsOne,
-     
   } = useCreateOrderItem(product);
 
   const openCheckoutModal = () => {    
@@ -43,12 +43,11 @@ export default function ProductDetail({ productId }: { productId: string }) {
     }
   };
 
- const toggleUserDataModel = () => {
+  const toggleUserDataModel = () => {
     SetIsUserDataModelOpen((prev) => !prev);
   };
+  
   const handleAddToCartOnly = () => {
- 
-    
     if (orderItem._id && orderItem.name && orderItem.prices.price) {
       addNewItem(orderItem);
     } else {
@@ -73,20 +72,47 @@ export default function ProductDetail({ productId }: { productId: string }) {
     return <div>Product not found: {productId}</div>;
   }
 
-  
+  const allImages = [product.imageUrl, ...(product.galleryImages || [])];
 
   return (
     <div className="w-15/16 mx-auto py-10 sm:py-15 text-Text flex justify-center">
-      <div className="w-full flex flex-col sm:flex-row justify-between border-2 border-Aside-Border rounded-2xl">
+      <div className="w-full flex flex-col sm:flex-row justify-between border-2 p-5
+       border-Aside-Border rounded-2xl">
         
-        <Image
-          priority
-          src={product.imageUrl || logo}
-          alt={product.name}
-          width={400}
-          height={400}
-          className="w-full sm:w-6/13 rounded-t-2xl sm:rounded-t-none sm:rounded-l-2xl"
-        />
+        {/* Image Gallery Section */}
+        <div className="w-full sm:w-6/13 flex flex-col">
+          {/* Main Image */}
+          <div className="relative w-full aspect-square">
+            <Image
+              priority
+              src={allImages[selectedImage] }
+              alt={product.name}
+              fill
+              className="object-cover rounded-xl "
+            />
+          </div>
+          
+          {allImages.length > 1 && (
+            <div className="flex gap-2 p-4 overflow-x-auto">
+              {allImages.map((image, index) => (
+                <div 
+                  key={index}
+                  className={`relative h-20 w-20 min-w-20 cursor-pointer border-2 rounded-md overflow-hidden ${
+                    selectedImage === index ? "border-main" : "border-gray-200"
+                  }`}
+                  onClick={() => setSelectedImage(index)}
+                >
+                  <Image
+                    src={image || logo}
+                    alt={`${product.name} view ${index + 1}`}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
 
         <div className="mx-auto w-10/12 sm:w-5/13 flex flex-col space-y-5 xl:space-y-9 py-5 xl:py-7">
           
@@ -151,7 +177,6 @@ export default function ProductDetail({ productId }: { productId: string }) {
             </span>
           </div>
 
-          {/* Action buttons */}
           <div className="flex justify-between items-center">
             <button
               onClick={handleAddToCartOnly}
@@ -167,9 +192,7 @@ export default function ProductDetail({ productId }: { productId: string }) {
             </button>
           </div>
 
-              <UserData closeUserDataModel={toggleUserDataModel} isModelOpen={isUserDataModelOpen}/>
-
-         
+          <UserData closeUserDataModel={toggleUserDataModel} isModelOpen={isUserDataModelOpen}/>
         </div>
       </div>
     </div>

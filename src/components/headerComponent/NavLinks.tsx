@@ -9,3 +9,4 @@ export default function NavLinks() {
     </div>
   );
 }
+// responsive

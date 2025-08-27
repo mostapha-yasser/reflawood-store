@@ -75,7 +75,7 @@ export default function ProductDetail({ productId }: { productId: string }) {
   const allImages = [product.imageUrl, ...(product.galleryImages || [])];
 
   return (
-    <div className="w-15/16 mx-auto py-10 sm:py-15 text-Text flex justify-center">
+    <div className="w-15/16 mx-auto py-10 sm:py-15 text-Text flex justify-center min-h-screen">
       <div className="w-full flex flex-col sm:flex-row justify-between border-2 p-5
        border-Aside-Border rounded-2xl">
         

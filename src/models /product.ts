@@ -70,6 +70,7 @@ export class ProductModel {
   private toResponse(dbProduct: WithId<ProductDB>): Product {
     return {
       _id: dbProduct._id.toString(),
+      isTopProduct:dbProduct.isTopProduct,
       name: dbProduct.name,
       description: dbProduct.description,
       galleryImages:dbProduct.galleryImages,

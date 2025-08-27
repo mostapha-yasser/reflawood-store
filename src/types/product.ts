@@ -1,8 +1,10 @@
 import { ObjectId } from 'mongodb';
+
 export interface Price {
   price: number;
   discount: number;
 }
+
 export interface Product {
   _id: string;
   name: string;
@@ -11,10 +13,12 @@ export interface Product {
   shortDesc: string;
   description: string;
   imageUrl: string;
-  galleryImages: string[]
+  galleryImages: string[];
+  isTopProduct: boolean;  
   createdAt: Date;
   updatedAt: Date;
 }
+
 export interface ProductDB {
   _id: ObjectId;
   name: string;
@@ -22,18 +26,21 @@ export interface ProductDB {
   category: "table" | "mirrors";
   shortDesc: string;
   description: string;
-  galleryImages: string[]
+  galleryImages: string[];
   imageUrl: string;
+  isTopProduct: boolean;  
   createdAt: Date;
   updatedAt: Date;
 }
+
 export interface ProductInput {
-  _id:string | undefined
+  _id: string | undefined;
   name: string;
   prices: Price;
   category: "table" | "mirrors";
   shortDesc: string;
   description: string;
   imageUrl: string;
-galleryImages: string[]
+  galleryImages: string[];
+  isTopProduct: boolean;  
 }

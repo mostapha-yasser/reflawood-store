@@ -4,7 +4,7 @@ import { createContext, ReactNode, useContext, useState } from "react";
 
 type OrderContextType = {
   totalPrice: number;
-  userData: { userName: string; userNumber: string };
+  userData: { userName: string; userNumber: string,userAddress:string };
   orderItems: OrderItem[];
   addNewItem: (item: OrderItem) => void;
   deleteItem: (deleteItem: OrderItem) => void;
@@ -12,20 +12,19 @@ type OrderContextType = {
   editItem: (updatedItem: OrderItem) => void;
   lengthOfOrderItem: number;
   totalQuantity: number;
-  addUserData: (userName: string, userNumber: string) => void;
+  addUserData: (userName: string, userNumber: string,userAddress:string) => void;
 };
 
 const OrderContext = createContext<OrderContextType | null>(null);
 
 export default function OrderProvider({ children }: { children: ReactNode }) {
   const [orderItems, setOrderItems] = useState<OrderItem[]>([]);
-  const [userData, setUserData] = useState({ userName: "", userNumber: "" });
+  const [userData, setUserData] = useState({ userName: "", userNumber: "" ,userAddress:""});
 
   const calculateTotalPrice = () => {
     return orderItems.reduce((acc, current) => {
       const basePrice = current.prices.price * current.quantity;
       
-      // Apply discount if it exists (assuming discount is a percentage)
       if (current.prices.discount > 0) {
         const discountAmount = basePrice * (current.prices.discount / 100);
         return acc + (basePrice - discountAmount);
@@ -35,8 +34,8 @@ export default function OrderProvider({ children }: { children: ReactNode }) {
     }, 0);
   };
 
-  const addUserData = (userName: string, userNumber: string) => {
-    setUserData({ userName, userNumber });
+  const addUserData = (userName: string, userNumber: string ,userAddress:string) => {
+    setUserData({ userName, userNumber,userAddress });
   };
 
   const totalPrice = +calculateTotalPrice().toFixed(2);
@@ -72,7 +71,6 @@ export default function OrderProvider({ children }: { children: ReactNode }) {
   };
 
   const editItem = (editOrderItem: OrderItem) => {
-    // Only edit if the item actually exists in the cart
     const indexOfEditedItem = orderItems.findIndex(
       (item) => item._id === editOrderItem._id
     );
@@ -82,7 +80,6 @@ export default function OrderProvider({ children }: { children: ReactNode }) {
       updatedItems[indexOfEditedItem] = editOrderItem;
       setOrderItems(updatedItems);
     }
-    // If the item doesn't exist, do nothing (don't add it)
   };
   
   const resetOrderItem = () => {

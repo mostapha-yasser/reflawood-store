@@ -10,7 +10,7 @@ _id: string;
 
 export interface Order {
   _id: string;
-    userData:{userName:string,userNumber:string};
+    userData:{userName:string,userNumber:string,userAddress:string};
 
   items: OrderItem[];
   totalPrice: number;

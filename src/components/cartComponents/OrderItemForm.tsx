@@ -36,7 +36,6 @@ function OrderItemForm({
         </span>
       </div>
 
-      {/* Price and Discount Information */}
       <div className="bg-gray-50 p-3 rounded-lg">
         <div className="flex justify-between items-center text-sm">
           <span>Original Price:</span>

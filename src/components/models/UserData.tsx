@@ -17,10 +17,12 @@ function UserData({
   const toggleCheckModel = () => {
     setIsCheckModelOpen((prev) => !prev);
   };
+    const [error, setError] = useState("")
 
   const [userData, setUserData] = useState({
     userName: '',
-    userNumber: ''
+    userNumber: '',
+    userAddress:''
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,12 +36,25 @@ function UserData({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault(); 
     
-    if (!userData.userName.trim() || !userData.userNumber.trim()) {
-      alert('Please fill in all fields');
+    if (!userData.userName.trim() || !userData.userNumber.trim() || !userData.userAddress.trim()) {
+      setError('Please fill in all fields');
       return;
     }
-    
-    addUserData(userData.userName, userData.userNumber);
+
+    if (userData.userName.trim().length < 3) {
+      setError('Name must be at least 3 characters long');
+      return;
+    }
+
+    const phoneRegex = /^[0-9]{10,15}$/;
+    if (!phoneRegex.test(userData.userNumber.trim())) {
+      setError('Phone number must be between 10 and 15 digits and contain only numbers');
+      return;
+    }
+
+    setError("");
+    addUserData(userData.userName, userData.userNumber,userData.userAddress);
+    closeUserDataModel()
     setIsCheckModelOpen(true);
   };
 
@@ -47,8 +62,8 @@ function UserData({
     <>
       <ModelContainer isModelOpen={isModelOpen}>
         <div className="
-          relative flex justify-center
-          w-4/5 md:w-2/5
+          relative flex flex-col items-center
+          w-4/5 md:w-3/5 lg:w-2/5
           bg-Aside
           rounded-2xl py-8
           px-6 bg-white
@@ -62,6 +77,7 @@ function UserData({
 
           <form onSubmit={handleSubmit} className="w-full max-w-md">
             <div className="mb-4">
+              
               <label className="block mb-2 text-sm font-medium text-gray-700">
                 Name
               </label>
@@ -90,6 +106,20 @@ function UserData({
                 required
               />
             </div>
+               <div className="mb-4">
+              <label className="block mb-2 text-sm font-medium text-gray-700">
+                Address
+              </label>
+              <input
+                type="text"
+                name="userAddress"
+                value={userData.userAddress}
+                onChange={handleChange}
+                placeholder="Enter your name"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-main"
+                required
+              />
+            </div>
 
             <button
               type="submit"
@@ -98,6 +128,7 @@ function UserData({
               Next
             </button>
           </form>
+          <p className='min-h-1 text-red-400'>{error}</p>
         </div>
       </ModelContainer>
 

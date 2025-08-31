@@ -29,6 +29,7 @@ function CheckOutModel({
       const emailData = {
         customer_name: userData.userName,
         customer_phone: userData.userNumber,
+        customer_address:userData.userAddress,
         order_date: new Date().toLocaleDateString('en-US'),
         order_items: orderItems.map(item => 
           `${item.name} ----- Quantity: ${item.quantity} -- Price: ${item.prices.price}${item.prices.discount > 0 ? ` (${item.prices.discount}% off)` : ''}`
@@ -64,19 +65,16 @@ function CheckOutModel({
     <ModelContainer isModelOpen={isModelOpen}>
       <article className="w-10/12 md:w-9/12 lg:w-5/12 p-6 md:p-10 flex flex-col gap-6 bg-white rounded-2xl shadow-xl">
         
-        {/* Status Message */}
         <p className={`text-base sm:text-lg px-5 text-center ${emailSent ? 'text-green-600' : 'text-main'}`}>
           {emailSent ? '✅ Order sent successfully! Thank you' : '✅ Thank you for your order! We will contact you soon'}
         </p>
 
-        {/* Customer Information */}
         <div className="bg-gray-50 p-4 rounded-xl">
           <h3 className="font-semibold text-main mb-2">Customer Information:</h3>
           <p><strong>Name:</strong> {userData.userName}</p>
           <p><strong>Phone:</strong> {userData.userNumber}</p>
         </div>
 
-        {/* Order Summary */}
         <div className="flex justify-between text-sm sm:text-base border-2 border-main rounded-xl overflow-hidden">
           <div className="w-1/2 py-4 px-3 text-center border-r-2 border-main font-semibold">
             Number of Items:

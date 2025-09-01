@@ -10,7 +10,7 @@ export async function GET(request:Request) {
     const { searchParams } = new URL(request.url);
     const category = searchParams.get("category");
     const filter: Filter<ProductDB> = {};
-    if (category=== "mirrors"||category=== "table") {
+    if (category=== "mirrors"||category=== "table"||category=== "sofas&chairs") {
       filter.category = category 
     }
 

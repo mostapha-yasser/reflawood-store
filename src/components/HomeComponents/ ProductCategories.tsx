@@ -1,49 +1,46 @@
 import Link from 'next/link';
 import React from 'react';
-import mirror from "../../../public/mirror-category.jpeg"
-import table from "../../../public/table-category.jpeg"
 
-import Image from 'next/image';
-function  ProductCategories() {
-    return (
-         <section className="py-12 px-4 bg-main-5">
-        <h2 className="  text-center text-3xl font-bold mb-4 text-main ">Shop by Category</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 max-w-3xl mx-auto">
-          <Link href="/products?category=table" className="group">
-            <div className="rounded-xl overflow-hidden shadow-sm shadow-main hover:scale-105 transition">
-              <Image
-                src={table}
-                alt="Tables"
-                width={400}
-                height={400}
-                className="w-96 h-96 scale-90"
-              />
-              <div className="p-4 text-center bg-white">
-                <h3 className="text-xl font-bold text-Text">Tables</h3>
-                <p className='text-justify text-Text'>Exquisite dining and coffee tables crafted from premium wood, featuring unique grain patterns and superior finish.</p>
-              </div>
-            </div>
-          </Link>
+function ProductCategories() {
+  return (
+    <section className="py-16 px-6 bg-main-5">
+      <h2 className="text-center text-3xl md:text-4xl font-bold mb-10 text-main">
+        Shop by Category
+      </h2>
 
-          <Link href="/products?category=mirror" className="group">
-            <div className="rounded-xl overflow-hidden shadow-sm shadow-main hover:scale-105 transition">
-              <Image
-                src={mirror}
-                alt="Mirrors"
-                width={400}
-                height={600}
-                className="w-96 h-96  scale-90"
-              />
-              <div className="p-4 text-center bg-white">
-                <h3 className="text-xl font-bold text-Text">Mirrors</h3>
-                                <p className='text-justify text-Text'>Stunning decorative mirrors with intricate frames, designed to add depth, light, and elegance to your spaces.</p>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <Link
+          href="/products?category=table"
+          className="block rounded-2xl bg-white border-2 border-main p-6 text-center font-semibold text-lg text-Text shadow-md hover:bg-main hover:text-white hover:shadow-lg transition transform hover:scale-105"
+        >
+          <h3 className="text-2xl font-bold mb-2">Tables</h3>
+          <p className="text-sm md:text-base">
+            Elegant dining and coffee tables with timeless designs to suit any home.
+          </p>
+        </Link>
 
-              </div>
-            </div>
-          </Link>
-        </div>
-      </section>
-    );
+        <Link
+          href="/products?category=mirrors"
+          className="block rounded-2xl bg-white border-2 border-main p-6 text-center font-semibold text-lg text-Text shadow-md hover:bg-main hover:text-white hover:shadow-lg transition transform hover:scale-105"
+        >
+          <h3 className="text-2xl font-bold mb-2">Mirrors</h3>
+          <p className="text-sm md:text-base">
+            Stylish mirrors that brighten your space and add a touch of luxury.
+          </p>
+        </Link>
+
+        <Link
+          href="/products?category=sofas&chairs"
+          className="block rounded-2xl bg-white border-2 border-main p-6 text-center font-semibold text-lg text-Text shadow-md hover:bg-main hover:text-white hover:shadow-lg transition transform hover:scale-105 md:col-span-2"
+        >
+          <h3 className="text-2xl font-bold mb-2">Sofas & Chairs</h3>
+          <p className="text-sm md:text-base">
+            Comfortable and stylish seating options designed for modern living.
+          </p>
+        </Link>
+      </div>
+    </section>
+  );
 }
 
-export default  ProductCategories;
+export default ProductCategories;

@@ -11,7 +11,6 @@ export default function Home() {
   <div className="w-4/5 mx-auto space-y-20 py-8 text-Text">
       <HeroSection />
       <Suspense fallback={<Loading/>}>
-
       <TopProducts/>
       </Suspense>
       <ProductCategories />

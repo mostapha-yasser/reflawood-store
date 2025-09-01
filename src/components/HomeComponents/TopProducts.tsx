@@ -11,7 +11,7 @@ function TopProducts() {
   const { data, isLoading, error } = useProduct();
 
   if (isLoading) return <Loading />;
-  if (error) return <div>Error loading top products: {error.message}</div>;
+  if (error) return <div ></div>;
   if (!data || !Array.isArray(data)) return null;
 
   const topProducts = data.filter((product) => product.isTopProduct);

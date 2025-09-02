@@ -13,15 +13,12 @@ function ProductCard({ product }: { product: Product }) {
   const calculateDiscountedPrice = (price: number, discount: number) => {
     return price - (price * discount / 100);
   };
-
   const discountedPrice = calculateDiscountedPrice(product.prices.price, product.prices.discount);
   const savings = product.prices.price - discountedPrice;
   const { addNewItem } = useOrderContext();
-
   const handleAddToCart = () => {
     try {
       setIsLoading(true);
-
       const orderItem: OrderItem = {
         _id: product._id,
         name: product.name,
@@ -31,14 +28,8 @@ function ProductCard({ product }: { product: Product }) {
         },
         quantity: 1
       };
-
-     
       addNewItem(orderItem);
-
-      // Show success state
       setIsAdded(true);
-
-      // Reset success state after 2 seconds
       setTimeout(() => {
         setIsAdded(false);
       }, 2000);
@@ -83,11 +74,15 @@ function ProductCard({ product }: { product: Product }) {
           </span>
         </div>
 
-        <h3 className="text-lg font-bold mb-3 text-gray-800 line-clamp-2">
+        <h3 className="text-lg  font-bold mb-3
+         text-gray-800 line-clamp-2">
           {product.name}
         </h3>
 
-        <div className="flex items-center justify-between mb-4">
+        <div className="
+         flex items-center
+         justify-between mb-4
+         ">
           <div className="flex items-center space-x-2">
             {product.prices.discount > 0 ? (
               <>
@@ -124,8 +119,8 @@ function ProductCard({ product }: { product: Product }) {
           )}
           </p>
 
-        <p className="text-gray-600 text-sm mb-4 line-clamp-2">
-          {product.description}
+        <p className="text-gray-600 min-h-11 text-sm mb-4 line-clamp-2">
+          {product.shortDesc}
         </p>
 
         <div className="space-y-4">

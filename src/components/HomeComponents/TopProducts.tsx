@@ -21,7 +21,7 @@ function TopProducts() {
     dots: true,
      arrows: true,
     infinite: true,
-    speed: 200,
+    speed: 250,
     slidesToShow: 3, 
     slidesToScroll: 1,
     autoplay: true,

@@ -170,9 +170,9 @@ function ProductTable() {
            cursor-pointer
             rounded-2xl  
             px-4 py-1"
-          href={"/candles"}
+          href={"/products"}
         >
-          Add More Candle
+          Add More to cart
         </Link>
         <button
           onClick={toggleUserDataModel}

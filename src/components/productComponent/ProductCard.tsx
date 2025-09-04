@@ -119,7 +119,7 @@ function ProductCard({ product }: { product: Product }) {
           )}
           </p>
 
-        <p className="text-gray-600 min-h-11 text-sm mb-4 line-clamp-2">
+        <p className="text-gray-600 min-h-11 text-sm mb-4 line-clamp-2 truncate">
           {product.shortDesc}
         </p>
 

@@ -69,9 +69,9 @@ function TopProducts() {
   };
 
   return (
-    <section className="py-6 md:px-4">
+    <section className="py-6 md:px-4 overflow-hidden">
     
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl sm:m-auto">
         <Slider {...settings}>
           {topProducts.map((product) => (
             <div key={product._id} className="md:px-2 ">

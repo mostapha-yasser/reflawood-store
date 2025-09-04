@@ -14,7 +14,9 @@ function Header() {
         priority
           src={logo}
           alt="reflawood logo"
-          className=" w-20 h-20  rounded-2xl scale-110"
+          width={200}
+          height={200}
+          className=" w-20 h-18   "
         />
       </Link>
       <div className="">

@@ -12,7 +12,7 @@ function CartIcon() {
              font-bold  font-mono  w-5 h-5 p-0.5
              flex justify-center items-center
              rounded-full
-             ${totalQuantity > 0 ? "text-white bg-main" : "text-Text"}
+             ${totalQuantity > 0 ? "text-white bg-main" : "text-transparent"}
 
             `}
       >

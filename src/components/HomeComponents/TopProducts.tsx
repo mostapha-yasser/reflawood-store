@@ -69,14 +69,12 @@ function TopProducts() {
   };
 
   return (
-    <section className="py-12 px-4 ">
-      <h2 className="text-3xl font-bold text-center mb-8 text-main ">
-        Top Products
-      </h2>
+    <section className="py-12 md:px-4">
+    
       <div className="max-w-7xl mx-auto">
         <Slider {...settings}>
           {topProducts.map((product) => (
-            <div key={product._id} className="px-2 ">
+            <div key={product._id} className="md:px-2 ">
               <ProductCard product={product} />
             </div>
           ))}

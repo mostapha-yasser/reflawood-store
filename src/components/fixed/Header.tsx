@@ -14,7 +14,7 @@ function Header() {
         priority
           src={logo}
           alt="reflawood logo"
-          className=" w-20 h-16  rounded-2xl"
+          className=" w-20 h-20  rounded-2xl scale-110"
         />
       </Link>
       <div className="">
@@ -22,7 +22,6 @@ function Header() {
       </div>
       <div className="w-8/10 md:w-fit flex items-center justify-around ">
       <CartIcon />
-
       </div>
     </div>
   );

@@ -35,7 +35,6 @@ function TopProducts() {
   const topProducts = data.filter((product) => product.isTopProduct);
   if (topProducts.length === 0) return null;
 
-  // Determine slidesToShow based on window width
   const getSlidesToShow = () => {
     if (windowWidth < 640) return 1;
     if (windowWidth < 1024) return 2;
@@ -70,14 +69,14 @@ function TopProducts() {
   };
 
   return (
-    <section className="py-12 px-4">
-      <h2 className="text-3xl font-bold text-center mb-8 text-main">
+    <section className="py-12 px-4 ">
+      <h2 className="text-3xl font-bold text-center mb-8 text-main ">
         Top Products
       </h2>
       <div className="max-w-7xl mx-auto">
         <Slider {...settings}>
           {topProducts.map((product) => (
-            <div key={product._id} className="px-2">
+            <div key={product._id} className="px-2 ">
               <ProductCard product={product} />
             </div>
           ))}

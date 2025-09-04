@@ -74,7 +74,7 @@ function ProductCard({ product }: { product: Product }) {
           </span>
         </div>
 
-        <h3 className="text-lg  font-bold mb-3 min-h-14
+        <h3 className="text-lg  font-bold mb-2
          text-gray-800 line-clamp-2">
           {product.name}
         </h3>

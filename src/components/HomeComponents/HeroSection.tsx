@@ -5,8 +5,8 @@ import Loading from "../ui/Loading";
 import TopProducts from "./TopProducts";
 function HeroSection() {
   return (
-    <section className=" py-16 bg-main/15">
-      <div className="space-y-6 px-2 md:px-4 lg:px-8">
+    <section className=" py-6 bg-main/15">
+      <div className=" px-2 md:px-4 lg:px-8">
         <h1 className="text-5xl font-bold text-main">Reflawood</h1>
         <Suspense fallback={<Loading />}>
           <TopProducts />

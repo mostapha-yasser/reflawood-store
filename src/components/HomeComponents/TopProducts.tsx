@@ -69,7 +69,7 @@ function TopProducts() {
   };
 
   return (
-    <section className="py-12 md:px-4">
+    <section className="py-6 md:px-4">
     
       <div className="max-w-7xl mx-auto">
         <Slider {...settings}>

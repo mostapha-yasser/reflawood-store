@@ -22,7 +22,6 @@ function TopProducts() {
     
     window.addEventListener('resize', handleResize);
     
-    // Cleanup
     return () => {
       window.removeEventListener('resize', handleResize);
     };
@@ -61,6 +60,7 @@ function TopProducts() {
       {
         breakpoint: 640,
         settings: {
+          arrows:false,
           slidesToShow: 1,
           dots: true
         }

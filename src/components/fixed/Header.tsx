@@ -16,7 +16,7 @@ function Header() {
           alt="reflawood logo"
           width={200}
           height={200}
-          className=" w-20 h-18   "
+          className=" w-20 h-18 "
         />
       </Link>
       <div className="">

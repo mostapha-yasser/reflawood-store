@@ -121,7 +121,7 @@ export default function ProductDetail({ productId }: { productId: string }) {
               {product.name}
             </h1>
             <div className="text-sm sm:text-sm md:text-base lg:text-xl font-mono text-green-400 font-black">
-              ${product.prices.price}
+              {product.prices.price} EGP
             </div>
           </div>
 
@@ -132,13 +132,13 @@ export default function ProductDetail({ productId }: { productId: string }) {
           {product.prices.discount > 0 && (
             <div className="flex items-center space-x-2">
               <span className="text-sm text-gray-500 line-through">
-                ${product.prices.price}
+                {product.prices.price} EGP
               </span>
               <span className="text-lg font-bold text-red-500">
                 {product.prices.discount}% OFF
               </span>
               <span className="text-lg font-bold text-green-500">
-                ${(product.prices.price * (1 - product.prices.discount / 100)).toFixed(2)}
+                {(product.prices.price * (1 - product.prices.discount / 100)).toFixed(2)} EGP
               </span>
             </div>
           )}

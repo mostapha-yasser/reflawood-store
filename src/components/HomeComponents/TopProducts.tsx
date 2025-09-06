@@ -12,10 +12,8 @@ function TopProducts() {
   const [windowWidth, setWindowWidth] = useState(0);
 
   useEffect(() => {
-    // Set initial width
     setWindowWidth(window.innerWidth);
     
-    // Handle window resize
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
     };
@@ -69,7 +67,7 @@ function TopProducts() {
   };
 
   return (
-    <section className="py-6 md:px-4 overflow-hidden">
+    <section className="py-6 md:px-8 xl:px-4 overflow-hidden">
     
       <div className="max-w-7xl sm:m-auto">
         <Slider {...settings}>

@@ -10,7 +10,7 @@ import UserData from "../models/UserData";
 
 export default function ProductDetail({ productId }: { productId: string }) {
   const [isUserDataModelOpen, SetIsUserDataModelOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(0); // Track selected gallery image
+  const [selectedImage, setSelectedImage] = useState(0); 
   
   const { data: product, isPending } = useGetOneProduct(productId);
   
@@ -75,13 +75,11 @@ export default function ProductDetail({ productId }: { productId: string }) {
   const allImages = [product.imageUrl, ...(product.galleryImages || [])];
 
   return (
-    <div className="w-15/16 mx-auto md:w-14/16 lg:w-12/16  text-Text flex justify-center  ">
+    <div className="w-15/16 mx-auto md:w-14/16 lg:w-11/16  text-Text flex justify-center  ">
       <div className="w-full flex flex-col sm:flex-row justify-between border-2 p-5 xl:p-10
        border-Aside-Border rounded-2xl">
         
-        {/* Image Gallery Section */}
         <div className="w-full sm:w-6/13 flex flex-col">
-          {/* Main Image */}
           <div className="relative w-full aspect-square">
             <Image
               priority

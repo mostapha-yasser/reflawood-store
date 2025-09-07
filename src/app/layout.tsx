@@ -19,7 +19,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "reflawood | Tables & Mirrors Store",
-  description: "Discover premium handcrafted tables and elegant mirrors at reflawood. Stylish furniture for timeless spaces.",
+  description:
+    "Discover premium handcrafted tables and elegant mirrors at reflawood. Stylish furniture for timeless spaces.",
 };
 
 export default function RootLayout({
@@ -31,15 +32,15 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[var(--color-Background)] text-[var(--color-Text)]`}
-      ><OrderProvider>
+      >
+        <OrderProvider>
+          <QueryProvider>
+            <Header />
 
-
-        <QueryProvider >
-        <Header/>
-        {children}
-        <Footer/>
-        </QueryProvider>
-      </OrderProvider>
+            {children}
+            <Footer />
+          </QueryProvider>
+        </OrderProvider>
       </body>
     </html>
   );

@@ -136,7 +136,7 @@ export default function ProductDetail({ productId }: { productId: string }) {
                 {product.prices.price} EGP
               </span>
               <span className="text-lg font-bold text-red-500">
-                {product.prices.discount}% OFF
+                {product.prices.discount}%OFF
               </span>
               <span className="text-lg font-bold text-green-500">
                 {(product.prices.price * (1 - product.prices.discount / 100)).toFixed(2)} EGP
@@ -173,7 +173,7 @@ export default function ProductDetail({ productId }: { productId: string }) {
                 if (product.prices.discount > 0) {
                   return (basePrice * (1 - product.prices.discount / 100)).toFixed(2);
                 }
-                return basePrice.toFixed(2);
+                return basePrice.toFixed(3);
               })()}
             </span>
           </div>

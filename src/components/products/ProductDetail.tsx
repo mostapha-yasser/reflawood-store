@@ -10,7 +10,8 @@ import UserData from "../models/UserData";
 
 export default function ProductDetail({ productId }: { productId: string }) {
   const [isUserDataModelOpen, SetIsUserDataModelOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(0); 
+  const [selectedImage, setSelectedImage] = useState(0);
+  const [imageErrors, setImageErrors] = useState<Set<number>>(new Set()); 
   
   const { data: product, isPending } = useGetOneProduct(productId);
   
@@ -83,10 +84,11 @@ export default function ProductDetail({ productId }: { productId: string }) {
           <div className="relative w-full aspect-square">
             <Image
               priority
-              src={allImages[selectedImage] }
+              src={imageErrors.has(selectedImage) ? logo : (allImages[selectedImage] || logo)}
               alt={product.name}
               fill
               className="object-cover rounded-xl "
+              onError={() => setImageErrors(prev => new Set(prev).add(selectedImage))}
             />
           </div>
           
@@ -101,10 +103,11 @@ export default function ProductDetail({ productId }: { productId: string }) {
                   onClick={() => setSelectedImage(index)}
                 >
                   <Image
-                    src={image || logo}
+                    src={imageErrors.has(index) ? logo : (image || logo)}
                     alt={`${product.name} view ${index + 1}`}
                     fill
                     className="object-cover"
+                    onError={() => setImageErrors(prev => new Set(prev).add(index))}
                   />
                 </div>
               ))}

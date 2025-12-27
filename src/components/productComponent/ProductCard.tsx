@@ -1,14 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Product } from '@/src/types/product';
 import { MoveRight, Check, ShoppingCart } from 'lucide-react';
 import { useOrderContext } from '@/src/contexts/OrderProvider';
 import { OrderItem } from '@/src/types/order';
+import logo from '../../../public/logo.png';
 
 function ProductCard({ product }: { product: Product }) {
   const [isAdded, setIsAdded] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [imageError, setImageError] = useState(false);
+
+  useEffect(() => {
+    // Pre-validate image URL
+    if (product.imageUrl) {
+      const img = new window.Image();
+      img.onerror = () => setImageError(true);
+      img.onload = () => setImageError(false);
+      img.src = product.imageUrl;
+    } else {
+      setImageError(true);
+    }
+  }, [product.imageUrl]);
 
   const calculateDiscountedPrice = (price: number, discount: number) => {
     return price - (price * discount / 100);
@@ -45,12 +59,13 @@ function ProductCard({ product }: { product: Product }) {
     <div className="bg-main/5 rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl">
       <div className="relative">
         <Image
-          src={product.imageUrl}
+          src={imageError ? logo : product.imageUrl}
           alt={product.name}
           width={400}
           height={256}
           className="w-full h-64 object-cover"
           priority={false}
+          unoptimized={imageError}
         />
         {product.prices.discount > 0 && (
           <div className="absolute top-4 left-4">

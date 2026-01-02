@@ -130,7 +130,7 @@ function CartProductItem({ orderItem, onEdit, onDelete }: CartProductItemProps) 
             <div className="w-full h-full bg-gray-200 animate-pulse rounded" />
           ) : (
             <Image
-              src={product?.imageUrl || "/logo.png"}
+              src={product?.imageUrl || "/logo.jpeg"}
               alt={orderItem.name}
               fill
               className="object-cover rounded"

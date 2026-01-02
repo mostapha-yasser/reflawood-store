@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import logo from "../../../public/logo.png";
+import logo from "../../../public/logo.jpeg";
 import Link from "next/link";
 import NavLinks from "../headerComponent/NavLinks";
 import CartIcon from "../ui/CartIcon";
@@ -22,7 +22,7 @@ function Header() {
       <div className="">
         <NavLinks />
       </div>
-      <div className="w-8/10 md:w-fit flex items-center justify-around ">
+      <div className="w-8/10 md:w-fit flex items-center justify-end ">
         <CartIcon />
       </div>
     </div>

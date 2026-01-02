@@ -42,9 +42,9 @@ export default function EditModel({
           <h2 className="text-lg md:text-xl font-semibold text-center mb-6 text-gray-800 pr-8">
             Edit Item
           </h2>
-          
+
           {/* Form Component */}
-          <OrderItemForm 
+          <OrderItemForm
             orderItemBeforeEdit={orderItemBeforeEdit}
             toggleModifyModel={toggleModifyModel}
           />

@@ -3,10 +3,10 @@ import useCreateOrderItem from "@/src/Hooks/useCreateOrderItem";
 import useGetOneProduct from "@/src/Hooks/useGetOneProduct";
 import { OrderItem } from "@/src/types/order";
 
-function OrderItemForm({ 
-  orderItemBeforeEdit, 
-  toggleModifyModel 
-}: { 
+function OrderItemForm({
+  orderItemBeforeEdit,
+  toggleModifyModel
+}: {
   orderItemBeforeEdit: OrderItem;
   toggleModifyModel?: (order: OrderItem) => void;
 }) {
@@ -60,10 +60,10 @@ function OrderItemForm({
       <div className="space-y-2">
         <label htmlFor="quantity" className="block">
           <p className="text-sm md:text-base font-medium text-gray-700">
-            Candle Quantity
+            Quantity
           </p>
         </label>
-        
+
         <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden bg-white">
           <button
             type="button"
@@ -81,7 +81,7 @@ function OrderItemForm({
           >
             −
           </button>
-          
+
           <input
             id="quantity"
             name="quantity"
@@ -99,7 +99,7 @@ function OrderItemForm({
               focus:ring-2 focus:ring-main focus:ring-inset
             "
           />
-          
+
           <button
             type="button"
             onClick={addOneMore}
@@ -112,15 +112,15 @@ function OrderItemForm({
               flex items-center justify-center
               disabled:opacity-50 disabled:cursor-not-allowed
             "
-            disabled={quantity >= 50}
+          // disabled={quantity >= 50}
           >
             +
           </button>
         </div>
-        
-        <p className="text-xs text-gray-500">
+
+        {/* <p className="text-xs text-gray-500">
           Quantity range: 1-50 pieces
-        </p>
+        </p> */}
       </div>
 
       {/* Total Price Display */}
@@ -129,8 +129,8 @@ function OrderItemForm({
           <span className="font-medium">Total for {quantity} item(s):</span>
           <span className="font-bold text-main text-lg">
             {(
-              orderItemBeforeEdit.prices.price * 
-              quantity * 
+              orderItemBeforeEdit.prices.price *
+              quantity *
               (1 - orderItemBeforeEdit.prices.discount / 100)
             ).toFixed(2)} EGP
           </span>

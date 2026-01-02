@@ -21,7 +21,7 @@ const useCreateOrderItem = (Product?: Product, initialOrderItem?: OrderItem) => 
         quantity: customQuantity !== undefined ? customQuantity : initialOrderItem.quantity || 1
       };
     }
-    
+
     if (Product) {
       return {
         _id: Product._id,
@@ -33,7 +33,7 @@ const useCreateOrderItem = (Product?: Product, initialOrderItem?: OrderItem) => 
         quantity: customQuantity || 1
       };
     }
-    
+
     return {
       _id: "",
       name: "",
@@ -45,6 +45,20 @@ const useCreateOrderItem = (Product?: Product, initialOrderItem?: OrderItem) => 
   const [quantity, setQuantity] = useState(() => initialOrderItem?.quantity || 1);
   const [orderItem, setOrderItem] = useState<OrderItem>(() => initializeOrderItem());
   const [currentItemKey, setCurrentItemKey] = useState(() => createItemKey(initialOrderItem));
+
+  const resetToInitial = () => {
+    if (initialOrderItem) {
+      setQuantity(initialOrderItem.quantity || 1);
+      const resetItem = initializeOrderItem(initialOrderItem.quantity);
+      setOrderItem(resetItem);
+      setCurrentItemKey(createItemKey(resetItem));
+    } else if (Product) {
+      setQuantity(1);
+      const resetItem = initializeOrderItem(1);
+      setOrderItem(resetItem);
+      setCurrentItemKey(createItemKey(resetItem));
+    }
+  };
 
   useEffect(() => {
     if (initialOrderItem) {
@@ -77,11 +91,11 @@ const useCreateOrderItem = (Product?: Product, initialOrderItem?: OrderItem) => 
 
   const addOneMore = () => {
     setQuantity(prev => {
-      const newQuantity = Math.min(prev + 1, 50);
+      const newQuantity = prev + 1;
       return newQuantity;
     });
   };
-  
+
   const minsOne = () => {
     setQuantity(prev => {
       const newQuantity = Math.max(prev - 1, 1);
@@ -91,9 +105,9 @@ const useCreateOrderItem = (Product?: Product, initialOrderItem?: OrderItem) => 
 
   const handleAddToCart = (e: ChangeEvent<HTMLSelectElement> | ChangeEvent<HTMLInputElement>) => {
     const { name, value, type } = e.target;
-    
+
     if (name === "quantity") {
-      const newQuantity = Math.max(1, Math.min(50, Number(value) || 1));
+      const newQuantity = Number(value) || 1;
       setQuantity(newQuantity);
     } else {
       const processedValue = type === 'number' ? Number(value) : value;
@@ -105,7 +119,7 @@ const useCreateOrderItem = (Product?: Product, initialOrderItem?: OrderItem) => 
   };
 
 
-  
+
   return {
     quantity,
     orderItem,
@@ -114,7 +128,7 @@ const useCreateOrderItem = (Product?: Product, initialOrderItem?: OrderItem) => 
     addOneMore,
     minsOne,
     setOrderItem,
-    
+
   };
 };
 

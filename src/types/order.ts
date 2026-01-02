@@ -1,7 +1,7 @@
 import { Price } from "./product";
 
 export interface OrderItem {
-_id: string;
+  _id: string;
   name: string;
   prices: Price;
   quantity: number;
@@ -10,8 +10,14 @@ _id: string;
 
 export interface Order {
   _id: string;
-    userData:{userName:string,userNumber:string,userAddress:string};
-
+  userData: {
+    userName: string;
+    userNumber: string;
+    city: string;
+    street: string;
+    buildingNumber: string;
+    apartmentNumber: string;
+  };
   items: OrderItem[];
   totalPrice: number;
   createdAt: Date;

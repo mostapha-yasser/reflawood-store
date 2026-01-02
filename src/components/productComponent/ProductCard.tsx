@@ -1,22 +1,20 @@
-import React, { useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { Product } from "@/src/types/product";
-import { MoveRight, Check, ShoppingCart } from "lucide-react";
-import { useOrderContext } from "@/src/contexts/OrderProvider";
-import { OrderItem } from "@/src/types/order";
-
+import React, { useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Product } from '@/src/types/product';
+import { MoveRight, Check, ShoppingCart } from 'lucide-react';
+import { useOrderContext } from '@/src/contexts/OrderProvider';
+import { OrderItem } from '@/src/types/order';
+import { usePathname } from 'next/navigation';
 function ProductCard({ product }: { product: Product }) {
   const [isAdded, setIsAdded] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const calculateDiscountedPrice = (price: number, discount: number) => {
-    return price - (price * discount) / 100;
+    return price - (price * discount / 100);
   };
-  const discountedPrice = calculateDiscountedPrice(
-    product.prices.price,
-    product.prices.discount,
-  );
+  const pathname = usePathname();
+  const discountedPrice = calculateDiscountedPrice(product.prices.price, product.prices.discount);
   const savings = product.prices.price - discountedPrice;
   const { addNewItem } = useOrderContext();
   const handleAddToCart = () => {
@@ -27,17 +25,18 @@ function ProductCard({ product }: { product: Product }) {
         name: product.name,
         prices: {
           price: product.prices.price,
-          discount: product.prices.discount || 0,
+          discount: product.prices.discount || 0
         },
-        quantity: 1,
+        quantity: 1
       };
       addNewItem(orderItem);
       setIsAdded(true);
       setTimeout(() => {
         setIsAdded(false);
       }, 2000);
+
     } catch (error) {
-      console.error("Error adding item to cart:", error);
+      console.error('Error adding item to cart:', error);
     } finally {
       setIsLoading(false);
     }
@@ -45,65 +44,59 @@ function ProductCard({ product }: { product: Product }) {
 
   return (
     <div className="bg-main/5 rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl">
-      <Link
-        href={`/products/${product._id}`}
-        className="block relative cursor-pointer"
-      >
-        <Image
+      <div className="relative w-full aspect-[5/5]">
+        <Link href={`/products/${product._id}`}>  <Image
           src={product.imageUrl}
+          // src="https://i.postimg.cc/zBNps29n/temp-Imagex-C6t-Jo.avif"
           alt={product.name}
-          width={400}
-          height={256}
-          className="w-full h-64 object-cover"
+          fill
+          className="object-contain"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           priority={false}
-        />
-        {product.prices.discount > 0 && (
+        /></Link>
+        {product.prices.discount > 0 && pathname !== '/' && (
           <div className="absolute top-4 left-4">
             <span className="bg-gradient-to-r from-purple-600 to-purple-700 text-white font-bold px-3 py-1 rounded-full text-sm">
               {product.prices.discount}% OFF
             </span>
           </div>
         )}
-      </Link>
+      </div>
 
-      <div className="p-6">
+      {pathname !== '/' && <div className="p-6">
         <div className="mb-2">
           <span
             className="inline-block px-2 py-1 text-xs font-semibold rounded-full capitalize"
             style={{
-              backgroundColor: "var(--color-headerBg)",
-              color: "var(--color-main)",
+              backgroundColor: 'var(--color-headerBg)',
+              color: 'var(--color-main)'
             }}
           >
             {product.category}
           </span>
         </div>
 
-        <h3
-          className="text-lg  font-bold mb-2
-         text-gray-800 line-clamp-2"
-        >
+        <h3 className="text-lg  font-bold mb-2
+         text-gray-800 line-clamp-2">
           {product.name}
         </h3>
 
-        <div
-          className="
+        <div className="
          flex items-center
          justify-between mb-4
-         "
-        >
+         ">
           <div className="flex items-center space-x-2">
             {product.prices.discount > 0 ? (
               <>
                 <span
                   className="text-xl font-bold"
-                  style={{ color: "var(--color-price)" }}
+                  style={{ color: 'var(--color-price)' }}
                 >
                   {discountedPrice.toFixed(2)}EGP
                 </span>
                 <span
                   className="text-sm line-through"
-                  style={{ color: "var(--color-original-price)" }}
+                  style={{ color: 'var(--color-original-price)' }}
                 >
                   {product.prices.price}EGP
                 </span>
@@ -111,7 +104,7 @@ function ProductCard({ product }: { product: Product }) {
             ) : (
               <span
                 className="text-xl font-bold"
-                style={{ color: "var(--color-price)" }}
+                style={{ color: 'var(--color-price)' }}
               >
                 {product.prices.price}EGP
               </span>
@@ -121,7 +114,10 @@ function ProductCard({ product }: { product: Product }) {
 
         <p className="text-green-600 text-sm font-semibold mb-4 min-h-4">
           {product.prices.discount > 0 && (
-            <span>Save {savings.toFixed(2)} EGP</span>
+            <span>
+
+              Save {savings.toFixed(2)} EGP
+            </span>
           )}
         </p>
 
@@ -137,13 +133,12 @@ function ProductCard({ product }: { product: Product }) {
           </Link>
 
           <button
-            className={`w-full px-4 py-2 rounded-lg font-semibold 
-              transition-all duration-200 hover:-translate-y-1 
-              disabled:opacity-50 disabled:cursor-not-allowed 
-              flex items-center justify-center gap-2 ${
-                isAdded
-                  ? "bg-green-500 text-white"
-                  : "bg-main text-white hover:bg-main/90"
+            className={`w-full px-4 py-2 rounded-lg font-semibold
+              transition-all duration-200 hover:-translate-y-1
+              disabled:opacity-50 disabled:cursor-not-allowed
+              flex items-center justify-center gap-2 ${isAdded
+                ? 'bg-green-500 text-white'
+                : 'bg-main text-white hover:bg-main/90'
               }`}
             onClick={handleAddToCart}
             disabled={isLoading}
@@ -166,7 +161,7 @@ function ProductCard({ product }: { product: Product }) {
             )}
           </button>
         </div>
-      </div>
+      </div>}
     </div>
   );
 }

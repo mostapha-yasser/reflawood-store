@@ -17,12 +17,15 @@ function UserData({
   const toggleCheckModel = () => {
     setIsCheckModelOpen((prev) => !prev);
   };
-    const [error, setError] = useState("")
+  const [error, setError] = useState("")
 
   const [userData, setUserData] = useState({
     userName: '',
     userNumber: '',
-    userAddress:''
+    city: '',
+    street: '',
+    buildingNumber: '',
+    apartmentNumber: ''
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,10 +37,10 @@ function UserData({
   };
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault(); 
-    
-    if (!userData.userName.trim() || !userData.userNumber.trim() || !userData.userAddress.trim()) {
-      setError('Please fill in all fields');
+    e.preventDefault();
+
+    if (!userData.userName.trim() || !userData.userNumber.trim() || !userData.city.trim() || !userData.street.trim() || !userData.buildingNumber.trim()) {
+      setError('Please fill in all required fields');
       return;
     }
 
@@ -53,7 +56,14 @@ function UserData({
     }
 
     setError("");
-    addUserData(userData.userName, userData.userNumber,userData.userAddress);
+    addUserData(
+      userData.userName,
+      userData.userNumber,
+      userData.city,
+      userData.street,
+      userData.buildingNumber,
+      userData.apartmentNumber
+    );
     closeUserDataModel()
     setIsCheckModelOpen(true);
   };
@@ -77,7 +87,7 @@ function UserData({
 
           <form onSubmit={handleSubmit} className="w-full max-w-md">
             <div className="mb-4">
-              
+
               <label className="block mb-2 text-sm font-medium text-gray-700">
                 Name
               </label>
@@ -106,18 +116,62 @@ function UserData({
                 required
               />
             </div>
-               <div className="mb-4">
+            <div className="mb-4">
               <label className="block mb-2 text-sm font-medium text-gray-700">
-                Address
+                City
               </label>
               <input
                 type="text"
-                name="userAddress"
-                value={userData.userAddress}
+                name="city"
+                value={userData.city}
                 onChange={handleChange}
-                placeholder="Enter your name"
+                placeholder="Enter your city"
                 className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-main"
                 required
+              />
+            </div>
+
+            <div className="mb-4">
+              <label className="block mb-2 text-sm font-medium text-gray-700">
+                Street
+              </label>
+              <input
+                type="text"
+                name="street"
+                value={userData.street}
+                onChange={handleChange}
+                placeholder="Enter your street"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-main"
+                required
+              />
+            </div>
+
+            <div className="mb-4">
+              <label className="block mb-2 text-sm font-medium text-gray-700">
+                Building Number
+              </label>
+              <input
+                type="text"
+                name="buildingNumber"
+                value={userData.buildingNumber}
+                onChange={handleChange}
+                placeholder="Enter building number"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-main"
+                required
+              />
+            </div>
+
+            <div className="mb-4">
+              <label className="block mb-2 text-sm font-medium text-gray-700">
+                Apartment Number <span className="text-gray-500 text-xs">(Optional)</span>
+              </label>
+              <input
+                type="text"
+                name="apartmentNumber"
+                value={userData.apartmentNumber}
+                onChange={handleChange}
+                placeholder="Enter apartment number"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-main"
               />
             </div>
 
@@ -132,8 +186,8 @@ function UserData({
         </div>
       </ModelContainer>
 
-      <CheckOutModel 
-        closeCheckOutModel={toggleCheckModel} 
+      <CheckOutModel
+        closeCheckOutModel={toggleCheckModel}
         isModelOpen={isCheckModelOpen}
       />
     </>

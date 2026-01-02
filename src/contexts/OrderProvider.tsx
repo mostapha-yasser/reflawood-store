@@ -1,11 +1,18 @@
 "use client";
 import { OrderItem } from "@/src/types/order";
-import { createContext, ReactNode, useContext, useState } from "react";
+import { createContext, ReactNode, useContext, useState, useEffect } from "react";
 import { toast } from "react-toastify";
 
 type OrderContextType = {
   totalPrice: number;
-  userData: { userName: string; userNumber: string, userAddress: string };
+  userData: {
+    userName: string;
+    userNumber: string;
+    city: string;
+    street: string;
+    buildingNumber: string;
+    apartmentNumber: string;
+  };
   orderItems: OrderItem[];
   addNewItem: (item: OrderItem) => void;
   deleteItem: (deleteItem: OrderItem) => void;
@@ -13,14 +20,47 @@ type OrderContextType = {
   editItem: (updatedItem: OrderItem) => void;
   lengthOfOrderItem: number;
   totalQuantity: number;
-  addUserData: (userName: string, userNumber: string, userAddress: string) => void;
+  addUserData: (
+    userName: string,
+    userNumber: string,
+    city: string,
+    street: string,
+    buildingNumber: string,
+    apartmentNumber: string
+  ) => void;
 };
 
 const OrderContext = createContext<OrderContextType | null>(null);
 
+const CART_STORAGE_KEY = "reflawood_cart_items";
+
 export default function OrderProvider({ children }: { children: ReactNode }) {
   const [orderItems, setOrderItems] = useState<OrderItem[]>([]);
-  const [userData, setUserData] = useState({ userName: "", userNumber: "", userAddress: "" });
+  const [userData, setUserData] = useState({
+    userName: "",
+    userNumber: "",
+    city: "",
+    street: "",
+    buildingNumber: "",
+    apartmentNumber: ""
+  });
+
+  // Initialize cart from localStorage
+  useEffect(() => {
+    const storedItems = localStorage.getItem(CART_STORAGE_KEY);
+    if (storedItems) {
+      try {
+        setOrderItems(JSON.parse(storedItems));
+      } catch (error) {
+        console.error("Error parsing cart from localStorage:", error);
+      }
+    }
+  }, []);
+
+  // Save cart to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(orderItems));
+  }, [orderItems]);
 
   const calculateTotalPrice = () => {
     return orderItems.reduce((acc, current) => {
@@ -35,8 +75,15 @@ export default function OrderProvider({ children }: { children: ReactNode }) {
     }, 0);
   };
 
-  const addUserData = (userName: string, userNumber: string, userAddress: string) => {
-    setUserData({ userName, userNumber, userAddress });
+  const addUserData = (
+    userName: string,
+    userNumber: string,
+    city: string,
+    street: string,
+    buildingNumber: string,
+    apartmentNumber: string
+  ) => {
+    setUserData({ userName, userNumber, city, street, buildingNumber, apartmentNumber });
   };
 
   const totalPrice = +calculateTotalPrice().toFixed(2);

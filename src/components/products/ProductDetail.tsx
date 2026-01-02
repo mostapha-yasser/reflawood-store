@@ -10,12 +10,12 @@ import UserData from "../models/UserData";
 
 export default function ProductDetail({ productId }: { productId: string }) {
   const [isUserDataModelOpen, SetIsUserDataModelOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(0); 
-  
+  const [selectedImage, setSelectedImage] = useState(0);
+
   const { data: product, isPending } = useGetOneProduct(productId);
-  
+
   const { addNewItem } = useOrderContext();
-  
+
   const {
     orderItem,
     quantity,
@@ -23,7 +23,7 @@ export default function ProductDetail({ productId }: { productId: string }) {
     minsOne,
   } = useCreateOrderItem(product);
 
-  const openCheckoutModal = () => {    
+  const openCheckoutModal = () => {
     if (orderItem._id && orderItem.name && orderItem.prices.price) {
       addNewItem(orderItem);
       SetIsUserDataModelOpen(true);
@@ -46,7 +46,7 @@ export default function ProductDetail({ productId }: { productId: string }) {
   const toggleUserDataModel = () => {
     SetIsUserDataModelOpen((prev) => !prev);
   };
-  
+
   const handleAddToCartOnly = () => {
     if (orderItem._id && orderItem.name && orderItem.prices.price) {
       addNewItem(orderItem);
@@ -78,26 +78,25 @@ export default function ProductDetail({ productId }: { productId: string }) {
     <div className="w-15/16 mx-auto md:w-14/16 lg:w-11/16  text-Text flex justify-center  ">
       <div className="w-full flex flex-col sm:flex-row justify-between border-2 p-5 xl:p-10
        border-Aside-Border rounded-2xl">
-        
+
         <div className="w-full sm:w-6/13 flex flex-col">
           <div className="relative w-full aspect-square">
             <Image
               priority
-              src={allImages[selectedImage] }
+              src={allImages[selectedImage]}
               alt={product.name}
               fill
               className="object-cover rounded-xl "
             />
           </div>
-          
+
           {allImages.length > 1 && (
             <div className="flex gap-2 p-4 overflow-x-auto">
               {allImages.map((image, index) => (
-                <div 
+                <div
                   key={index}
-                  className={`relative h-20 w-20 min-w-20 cursor-pointer border-2 rounded-md overflow-hidden ${
-                    selectedImage === index ? "border-main" : "border-gray-200"
-                  }`}
+                  className={`relative h-20 w-20 min-w-20 cursor-pointer border-2 rounded-md overflow-hidden ${selectedImage === index ? "border-main" : "border-gray-200"
+                    }`}
                   onClick={() => setSelectedImage(index)}
                 >
                   <Image
@@ -113,7 +112,7 @@ export default function ProductDetail({ productId }: { productId: string }) {
         </div>
 
         <div className="mx-auto w-10/12 sm:w-5/13 flex flex-col space-y-5 xl:space-y-9 py-5 xl:py-7">
-          
+
           <div className="w-full flex justify-between items-center">
             <h1 className="sm:text-lg md:text-2xl xl:text-4xl font-bold">
               {product.name}
@@ -190,7 +189,7 @@ export default function ProductDetail({ productId }: { productId: string }) {
             </button>
           </div>
 
-          <UserData closeUserDataModel={toggleUserDataModel} isModelOpen={isUserDataModelOpen}/>
+          <UserData closeUserDataModel={toggleUserDataModel} isModelOpen={isUserDataModelOpen} />
         </div>
       </div>
     </div>

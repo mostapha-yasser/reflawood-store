@@ -175,6 +175,12 @@ function UserData({
               />
             </div>
 
+            <div className="mb-4 p-3 bg-amber-50 border border-amber-200 rounded-md">
+              <p className="text-sm text-amber-800">
+                <strong>Note:</strong> No delivery available to Upper Egypt
+              </p>
+            </div>
+
             <button
               type="submit"
               className="w-full bg-main text-white py-2 px-4 rounded-md hover:bg-opacity-90 transition duration-300"

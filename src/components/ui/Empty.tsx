@@ -8,7 +8,7 @@ function Empty() {
       <div className="z-20 text-center lg:text-left w-full lg:w-1/2 flex flex-col gap-80 lg:gap-0 relative lg:pt-5px">
         <div className="space-y-8 lg:mb-7">
           <p className="text-center lg:text-start text-2xl sm:text-3xl xl:text-4xl md:tracking-wider font-bold text-nowrap">
-        Empty Card
+            Empty Card
           </p>
 
           <p
@@ -17,16 +17,16 @@ function Empty() {
            lg:mx-5 w-full lg:w-8/12  md:leading-10"
           >
             Looks like you haven’t added anything to your cart yet. Let’s get
-            you back to explore our candle collection and find something you’ll
+            you back to explore our  collection and find something you’ll
             love.
           </p>
-          </div>
+        </div>
 
         <Link
           href="products"
           className="text-base text-center w-2/3 md:w-/5 mx-auto 
           lg:text-2xl px-4 py-2 lg:px-0 text-white bg-main rounded-sm text-nowrap"
-          >
+        >
           Browse tables and mirrors
         </Link>
       </div>

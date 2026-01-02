@@ -1,9 +1,9 @@
 import { useOrderContext } from "@/src/contexts/OrderProvider";
-import { ShoppingBag } from "lucide-react";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import Link from "next/link";
 
 function CartIcon() {
-  const {totalQuantity}=useOrderContext();
+  const { totalQuantity } = useOrderContext();
   return (
     <Link href={"/cart"} className="w-fit text-Text relative mx-4 md:mx-0">
       <p
@@ -19,7 +19,12 @@ function CartIcon() {
         {totalQuantity}
       </p>
       <div className="z-50">
-        <ShoppingBag size={35} />
+        <AddShoppingCartIcon
+          style={{
+            fontSize: 35,
+            transform: 'scaleX(-1)'
+          }}
+        />
       </div>
     </Link>
   );

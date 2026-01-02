@@ -2,14 +2,12 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ["pin.it"],
     remotePatterns: [
       {
         protocol: 'https',
         hostname: 'drive.google.com',
         pathname: '/**',
       },
-    
       {
         protocol: 'https',
         hostname: 'images.unsplash.com',

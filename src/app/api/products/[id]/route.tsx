@@ -1,8 +1,8 @@
-import { ProductModel } from "@/src/models /product";
+import { ProductModel } from "@/src/models/product";
 
 
 export async function GET(
- request: Request,
+  request: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
   const { id } = await params;

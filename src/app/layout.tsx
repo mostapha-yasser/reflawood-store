@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import "react-toastify/dist/ReactToastify.css";
 
 import OrderProvider from "@/src/contexts/OrderProvider";
 import QueryProvider from "../components/tanstackQuery/QueryProvider";
 import Header from "../components/fixed/Header";
 import Footer from "../components/fixed/Footer";
+import ToastContainer from "../components/ui/ToastContainer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,6 +41,7 @@ export default function RootLayout({
 
             {children}
             <Footer />
+            <ToastContainer />
           </QueryProvider>
         </OrderProvider>
       </body>

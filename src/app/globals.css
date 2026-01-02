@@ -11,3 +11,41 @@
 
 
 /* Enhanced form styling */
+
+/* Custom Toast Styling */
+.custom-toast {
+  @apply rounded-lg shadow-lg border border-gray-200;
+  background: linear-gradient(135deg, #ffffff 0%, #fdfaf7 100%);
+  color: #3a2412;
+  font-family: inherit;
+}
+
+.custom-toast-body {
+  @apply flex items-center gap-3;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.custom-toast-progress {
+  background: linear-gradient(90deg, #73431c 0%, #8b5a2b 100%);
+}
+
+/* Success toast styling */
+.Toastify__toast--success {
+  border-left: 4px solid #10b981;
+}
+
+.Toastify__toast--success .custom-toast-body::before {
+  content: "✓";
+  @apply text-green-500 text-xl font-bold;
+}
+
+/* Info toast styling */
+.Toastify__toast--info {
+  border-left: 4px solid #73431c;
+}
+
+.Toastify__toast--info .custom-toast-body::before {
+  content: "ℹ";
+  @apply text-main text-xl font-bold;
+}

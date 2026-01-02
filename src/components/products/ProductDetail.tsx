@@ -10,8 +10,7 @@ import UserData from "../models/UserData";
 
 export default function ProductDetail({ productId }: { productId: string }) {
   const [isUserDataModelOpen, SetIsUserDataModelOpen] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(0);
-  const [imageErrors, setImageErrors] = useState<Set<number>>(new Set()); 
+  const [selectedImage, setSelectedImage] = useState(0); 
   
   const { data: product, isPending } = useGetOneProduct(productId);
   
@@ -84,11 +83,10 @@ export default function ProductDetail({ productId }: { productId: string }) {
           <div className="relative w-full aspect-square">
             <Image
               priority
-              src={imageErrors.has(selectedImage) ? logo : (allImages[selectedImage] || logo)}
+              src={allImages[selectedImage] }
               alt={product.name}
               fill
               className="object-cover rounded-xl "
-              onError={() => setImageErrors(prev => new Set(prev).add(selectedImage))}
             />
           </div>
           
@@ -103,11 +101,10 @@ export default function ProductDetail({ productId }: { productId: string }) {
                   onClick={() => setSelectedImage(index)}
                 >
                   <Image
-                    src={imageErrors.has(index) ? logo : (image || logo)}
+                    src={image || logo}
                     alt={`${product.name} view ${index + 1}`}
                     fill
                     className="object-cover"
-                    onError={() => setImageErrors(prev => new Set(prev).add(index))}
                   />
                 </div>
               ))}
@@ -136,7 +133,7 @@ export default function ProductDetail({ productId }: { productId: string }) {
                 {product.prices.price} EGP
               </span>
               <span className="text-lg font-bold text-red-500">
-                {product.prices.discount}%OFF
+                {product.prices.discount}% OFF
               </span>
               <span className="text-lg font-bold text-green-500">
                 {(product.prices.price * (1 - product.prices.discount / 100)).toFixed(2)} EGP
@@ -173,7 +170,7 @@ export default function ProductDetail({ productId }: { productId: string }) {
                 if (product.prices.discount > 0) {
                   return (basePrice * (1 - product.prices.discount / 100)).toFixed(2);
                 }
-                return basePrice.toFixed(3);
+                return basePrice.toFixed(2);
               })()}
             </span>
           </div>

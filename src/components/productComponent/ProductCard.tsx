@@ -92,7 +92,7 @@ function ProductCard({ product }: { product: Product }) {
                   className="text-xl font-bold"
                   style={{ color: 'var(--color-price)' }}
                 >
-                  {discountedPrice.toFixed(2)}EGP
+                  {discountedPrice.toFixed(0)}EGP
                 </span>
                 <span
                   className="text-sm line-through"
@@ -112,22 +112,22 @@ function ProductCard({ product }: { product: Product }) {
           </div>
         </div>
 
-        <p className="text-green-600 text-sm font-semibold mb-4 min-h-4">
+        {/* <p className="text-green-600 text-sm font-semibold mb-4 min-h-4">
           {product.prices.discount > 0 && (
             <span>
 
               Save {savings.toFixed(2)} EGP
             </span>
           )}
-        </p>
+        </p> */}
 
-        <p className="text-gray-600 min-h-11 text-sm mb-4 line-clamp-2 truncate">
+        <p className="text-gray-600  text-sm mb-2 line-clamp-2 truncate">
           {product.shortDesc}
         </p>
 
         <div className="space-y-4">
           <Link href={`/products/${product._id}`}>
-            <button className="w-full  cursor-pointer flex gap-2 px-4 py-2 rounded-lg font-semibold transition-all duration-200 hover:-translate-y-1">
+            <button className="w-full  cursor-pointer flex gap-2 pe-4 py-2 rounded-lg font-semibold transition-all duration-200 hover:-translate-y-1">
               More Details <MoveRight />
             </button>
           </Link>

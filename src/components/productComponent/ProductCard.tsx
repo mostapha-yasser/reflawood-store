@@ -44,13 +44,13 @@ function ProductCard({ product }: { product: Product }) {
 
   return (
     <div className="bg-main/5 rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl">
-      <div className="relative w-full aspect-[5/5]">
+      <div className="relative w-full aspect-[3/4]">
         <Link href={`/products/${product._id}`}>  <Image
           src={product.imageUrl}
           // src="https://i.postimg.cc/zBNps29n/temp-Imagex-C6t-Jo.avif"
           alt={product.name}
           fill
-          className="object-fill"
+          className="object-contain"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           priority={false}
         /></Link>
@@ -61,21 +61,16 @@ function ProductCard({ product }: { product: Product }) {
             </span>
           </div>
         )}
+        {pathname !== '/' && (
+          <div className="absolute top-4 right-4">
+            <span className="bg-main/50 text-white font-bold px-3 py-1 rounded-full text-sm capitalize">
+              {product.category}
+            </span>
+          </div>
+        )}
       </div>
 
       {pathname !== '/' && <div className="p-6">
-        <div className="mb-2">
-          <span
-            className="inline-block pe-2 py-1 text-xs font-semibold rounded-full capitalize"
-            style={{
-              backgroundColor: 'var(--color-headerBg)',
-              color: 'var(--color-main)'
-            }}
-          >
-            {product.category}
-          </span>
-        </div>
-
         <h3 className="text-lg  font-bold mb-2
          text-gray-800 line-clamp-2">
           {product.name}

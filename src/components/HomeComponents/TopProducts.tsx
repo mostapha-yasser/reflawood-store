@@ -13,13 +13,13 @@ function TopProducts() {
 
   useEffect(() => {
     setWindowWidth(window.innerWidth);
-    
+
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
     };
-    
+
     window.addEventListener('resize', handleResize);
-    
+
     return () => {
       window.removeEventListener('resize', handleResize);
     };
@@ -58,7 +58,7 @@ function TopProducts() {
       {
         breakpoint: 640,
         settings: {
-          arrows:false,
+          arrows: false,
           slidesToShow: 1,
           dots: true
         }
@@ -68,11 +68,11 @@ function TopProducts() {
 
   return (
     <section className="py-6 md:px-8 xl:px-4 overflow-hidden">
-    
+
       <div className="max-w-7xl sm:m-auto">
         <Slider {...settings}>
           {topProducts.map((product) => (
-            <div key={product._id} className="md:px-2 ">
+            <div key={product._id} className="px-5">
               <ProductCard product={product} />
             </div>
           ))}

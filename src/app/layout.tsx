@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Dancing_Script } from "next/font/google";
 import "./globals.css";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -19,6 +19,12 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const dancingScript = Dancing_Script({
+  variable: "--font-dancing-script",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
 export const metadata: Metadata = {
   title: "reflawood | Tables & Mirrors Store",
   description:
@@ -33,7 +39,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[var(--color-Background)] text-[var(--color-Text)]`}
+        className={`${geistSans.variable} ${geistMono.variable} ${dancingScript.variable} antialiased bg-[var(--color-Background)] text-[var(--color-Text)]`}
       >
         <OrderProvider>
           <QueryProvider>

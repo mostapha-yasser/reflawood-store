@@ -35,7 +35,7 @@ function ProductGallery() {
   if (!data || !Array.isArray(data)) return null;
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 pb-8">
       <div className="flex flex-col sm:flex-row justify-between items-center mb-8 gap-4">
         <div className="flex flex-wrap gap-2">
           {[
@@ -47,11 +47,10 @@ function ProductGallery() {
             <button
               key={cat.label}
               onClick={() => handleCategoryChange(cat.value)}
-              className={`px-4 py-2 cursor-pointer rounded-md transition-colors ${
-                activeCategory === cat.value
+              className={`px-4 py-2 cursor-pointer rounded-md transition-colors ${activeCategory === cat.value
                   ? "bg-main text-white"
                   : "bg-white text-gray-700 hover:bg-gray-200 border border-gray-300"
-              }`}
+                }`}
             >
               {cat.label}
             </button>

@@ -165,13 +165,13 @@ export default function ProductDetail({ productId }: { productId: string }) {
           <div className="flex justify-between items-center">
             <span className="text-lg font-semibold">Total:</span>
             <span className="text-lg font-bold text-main">
-              ${(() => {
+              {(() => {
                 const basePrice = product.prices.price * quantity;
                 if (product.prices.discount > 0) {
-                  return (basePrice * (1 - product.prices.discount / 100)).toFixed(2);
+                  return (basePrice * (1 - product.prices.discount / 100)).toFixed(0);
                 }
-                return basePrice.toFixed(2);
-              })()}
+                return basePrice.toFixed(0)
+              })()} EGP
             </span>
           </div>
 

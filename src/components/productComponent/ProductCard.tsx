@@ -87,13 +87,13 @@ function ProductCard({ product }: { product: Product }) {
                   className="text-lg font-bold"
                   style={{ color: 'var(--color-price)' }}
                 >
-                  {discountedPrice.toFixed(0)}EGP
+                  {discountedPrice.toFixed(0)} EGP
                 </span>
                 <span
                   className="text-sm line-through"
                   style={{ color: 'var(--color-original-price)' }}
                 >
-                  {product.prices.price}EGP
+                  {product.prices.price} EGP
                 </span>
               </>
             ) : (
@@ -101,7 +101,7 @@ function ProductCard({ product }: { product: Product }) {
                 className="text-xl font-bold"
                 style={{ color: 'var(--color-price)' }}
               >
-                {product.prices.price}EGP
+                {product.prices.price} EGP
               </span>
             )}
           </div>

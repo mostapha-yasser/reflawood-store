@@ -66,7 +66,7 @@ function ProductCard({ product }: { product: Product }) {
       {pathname !== '/' && <div className="p-6">
         <div className="mb-2">
           <span
-            className="inline-block px-2 py-1 text-xs font-semibold rounded-full capitalize"
+            className="inline-block pe-2 py-1 text-xs font-semibold rounded-full capitalize"
             style={{
               backgroundColor: 'var(--color-headerBg)',
               color: 'var(--color-main)'
@@ -83,13 +83,13 @@ function ProductCard({ product }: { product: Product }) {
 
         <div className="
          flex items-center
-         justify-between mb-4
+         justify-between mb-2
          ">
           <div className="flex items-center space-x-2">
             {product.prices.discount > 0 ? (
               <>
                 <span
-                  className="text-xl font-bold"
+                  className="text-lg font-bold"
                   style={{ color: 'var(--color-price)' }}
                 >
                   {discountedPrice.toFixed(0)}EGP

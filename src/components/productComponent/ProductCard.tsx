@@ -50,7 +50,7 @@ function ProductCard({ product }: { product: Product }) {
           // src="https://i.postimg.cc/zBNps29n/temp-Imagex-C6t-Jo.avif"
           alt={product.name}
           fill
-          className="object-fill"
+          className="object-cover"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           priority={false}
         /></Link>
@@ -116,7 +116,7 @@ function ProductCard({ product }: { product: Product }) {
           )}
         </p> */}
 
-        <p className="text-gray-600  text-sm  line-clamp-2 truncate">
+        <p className="text-gray-600 text-lg font-bold line-clamp-2 truncate">
           {product.shortDesc}
         </p>
 

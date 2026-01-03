@@ -80,13 +80,14 @@ export default function ProductDetail({ productId }: { productId: string }) {
        border-Aside-Border rounded-2xl">
 
         <div className="w-full sm:w-6/13 flex flex-col">
-          <div className="relative w-full aspect-square">
+          <div className="relative w-full aspect-[3/4]">
             <Image
               priority
               src={allImages[selectedImage]}
               alt={product.name}
               fill
-              className="object-cover rounded-xl "
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
           </div>
 

@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Dancing_Script } from "next/font/google";
+import "@fontsource/funnel-sans/400.css";
+import "@fontsource/funnel-sans/500.css";
+import "@fontsource/funnel-sans/600.css";
+import "@fontsource/funnel-sans/700.css";
 import "./globals.css";
 import "react-toastify/dist/ReactToastify.css";
 

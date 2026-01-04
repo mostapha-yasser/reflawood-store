@@ -136,6 +136,7 @@ export default function OrderProvider({ children }: { children: ReactNode }) {
 
   const resetOrderItem = () => {
     setOrderItems([]);
+    localStorage.removeItem(CART_STORAGE_KEY);
   };
 
   const lengthOfOrderItem = orderItems.length;

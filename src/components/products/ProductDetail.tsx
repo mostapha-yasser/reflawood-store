@@ -123,7 +123,7 @@ export default function ProductDetail({ productId }: { productId: string }) {
             </div>
           </div>
 
-          <p className="text-justify text-sm md:text-base md-text-lg truncate  ">
+          <p className="text-justify text-sm md:text-base md-text-lg   ">
             {product.description}
           </p>
 
